@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital@0;1&display=swap');
+
+body {
+  font-family: 'Lora', serif;
+  background-color: #fdf6e9;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a373' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .vintage-card {
+    @apply bg-white bg-opacity-90 rounded-lg shadow-xl border border-amber-100 p-8;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4a373' fill-opacity='0.05'%3E%3Cpath d='M0 0h20v20H0V0zm10 17.5c4.142 0 7.5-3.358 7.5-7.5S14.142 2.5 10 2.5 2.5 5.858 2.5 10s3.358 7.5 7.5 7.5z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .vintage-button {
+    @apply px-6 py-2 bg-amber-900 text-amber-50 rounded-md transition-all duration-300 transform hover:scale-105;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .vintage-input {
+    @apply border-amber-200 bg-amber-50 bg-opacity-50 rounded-md shadow-inner transition-all duration-300;
+    &:focus {
+      @apply ring-2 ring-amber-400 border-amber-300;
+    }
+  }
+
+  .like-seal {
+    @apply relative inline-flex items-center justify-center;
+    &::before {
+      content: '';
+      @apply absolute inset-0 bg-red-100 rounded-full scale-0 transition-transform duration-300;
+    }
+    &:hover::before {
+      @apply scale-100;
+    }
+  }
+
+  .story-card {
+    @apply vintage-card hover:shadow-2xl transition-all duration-500;
+    border-image: linear-gradient(to right, #d4a373, #fcd34d) 1;
+  }
+
+  .ornate-border {
+    @apply relative;
+    &::before, &::after {
+      content: '';
+      @apply absolute h-px w-1/4 bg-gradient-to-r from-amber-900/20 to-amber-900;
+    }
+    &::before {
+      @apply -left-4 top-1/2;
+    }
+    &::after {
+      @apply -right-4 top-1/2;
+    }
+  }
+
+  .page-transition {
+    @apply transition-opacity duration-500;
+  }
+
+  .writing-animation {
+    @apply relative overflow-hidden;
+    &::after {
+      content: '';
+      @apply absolute bottom-0 left-0 w-full h-0.5 bg-amber-900 origin-left;
+      animation: write 1s ease-out forwards;
+    }
+  }
+
+  @keyframes write {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-amber-50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-amber-900/50 rounded-full;
+  &:hover {
+    @apply bg-amber-900/70;
+  }
+}
